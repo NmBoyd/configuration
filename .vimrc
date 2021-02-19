@@ -19,12 +19,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'kien/ctrlp.vim'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe', {'do': './install.py --all'}
 Plug 'mbbill/undotree'
 
 call plug#end()
 
 colorscheme gruvbox
+
+
 set background=dark
 
 if executable('rg')
@@ -46,5 +48,13 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar>
 nnoremap <leader>ps :Rg<SPACE>
 
-nnoremap <silent> <Leader>jd :YcmCompleter GotTo<CR>
-nnoremap <silent> <Leader>jf :YcmCompleter FixIt<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GotTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
